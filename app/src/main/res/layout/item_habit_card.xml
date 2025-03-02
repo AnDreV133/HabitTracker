@@ -1,6 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_marginTop="-16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rounded_card_bottom_part"
+        android:backgroundTint="@color/light_gray"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="4dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/itemHabitRightPartCard"
+        app:layout_constraintStart_toStartOf="@+id/itemHabitLeftPartCard"
+        app:layout_constraintTop_toBottomOf="@+id/itemHabitLeftPartCard"
+        tools:text="description description description description description description description description description description description description description description description description description description description description description description " />
+
+    <View
+        android:id="@+id/itemHabitLeftPartCard"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shape_rounded_card_left_part"
+        app:layout_constraintEnd_toStartOf="@+id/itemHabitRightPartCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:backgroundTint="@color/white" />
+
+    <TextView
+        android:id="@+id/itemHabitName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@id/itemHabitLeftPartCard"
+        app:layout_constraintTop_toTopOf="@id/itemHabitLeftPartCard"
+        tools:text="name" />
+
+    <TextView
+        android:id="@+id/itemHabitPriority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/itemHabitLeftPartCard"
+        app:layout_constraintStart_toStartOf="@id/itemHabitLeftPartCard"
+        tools:text="#p" />
+
+    <TextView
+        android:id="@+id/itemHabitType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/itemHabitLeftPartCard"
+        app:layout_constraintEnd_toStartOf="@+id/itemHabitPeriod"
+        app:layout_constraintStart_toEndOf="@id/itemHabitPriority"
+        tools:text="type" />
+
+    <TextView
+        android:id="@+id/itemHabitPeriod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/itemHabitLeftPartCard"
+        app:layout_constraintEnd_toEndOf="@id/itemHabitLeftPartCard"
+        tools:text="period" />
+
+    <View
+        android:id="@+id/itemHabitRightPartCard"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/shape_rounded_card_right_part"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/itemHabitLeftPartCard"
+        tools:backgroundTint="#24ffff" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
