@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HabitTracker</string>
     <string name="app_title">Трекер привычек</string>
+    <string name="priority_fmt">#%d</string>
 </resources>
