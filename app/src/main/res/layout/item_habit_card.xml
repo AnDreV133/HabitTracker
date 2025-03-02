@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/itemHabitDescription"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="-16dp"
         android:background="@drawable/shape_rounded_card_bottom_part"
@@ -15,11 +15,11 @@
         android:paddingHorizontal="8dp"
         android:paddingTop="20dp"
         android:paddingBottom="4dp"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@+id/itemHabitRightPartCard"
         app:layout_constraintStart_toStartOf="@+id/itemHabitLeftPartCard"
         app:layout_constraintTop_toBottomOf="@+id/itemHabitLeftPartCard"
-        tools:text="description description description description description description description description description description description description description description description description description description description description description description " />
+        tools:text="description " />
 
     <View
         android:id="@+id/itemHabitLeftPartCard"
