@@ -1,5 +1,6 @@
 package com.andrev133.habittracker
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -69,6 +70,12 @@ class HabitListActivity : AppCompatActivity() {
             setContentView(root)
             habitList.layoutManager = LinearLayoutManager(this@HabitListActivity)
             habitList.adapter = HabitListAdapter(dataSet)
+        }
+
+        binding.habitListFab.setOnClickListener {
+            startActivity(
+                Intent(this, HabitEditorActivity::class.java)
+            )
         }
     }
 
