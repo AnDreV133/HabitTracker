@@ -2,20 +2,20 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_marginTop="-16dp"
+        android:id="@+id/itemHabitDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-16dp"
         android:background="@drawable/shape_rounded_card_bottom_part"
         android:backgroundTint="@color/light_gray"
         android:paddingHorizontal="8dp"
         android:paddingTop="20dp"
         android:paddingBottom="4dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="@+id/itemHabitRightPartCard"
         app:layout_constraintStart_toStartOf="@+id/itemHabitLeftPartCard"
         app:layout_constraintTop_toBottomOf="@+id/itemHabitLeftPartCard"
@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toStartOf="@+id/itemHabitRightPartCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:backgroundTint="@color/white" />
+        tools:backgroundTint="@color/very_light_gray" />
 
     <TextView
         android:id="@+id/itemHabitName"
@@ -78,6 +78,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/itemHabitLeftPartCard"
         tools:backgroundTint="#24ffff" />
+
+    <View
+        android:id="@+id/itemHabitDivider"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="@color/transparent"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@+id/itemHabitDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
