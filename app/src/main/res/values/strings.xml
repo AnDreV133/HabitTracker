@@ -3,4 +3,15 @@
     <string name="app_title">Трекер привычек</string>
     <string name="priority_fmt">#%d</string>
     <string name="description_add_new_habit">add new habit</string>
+    <string name="type_with_double_dots">Тип:</string>
+    <string name="periodicity_with_double_dots">Периодичность:</string>
+    <string name="save">Сохранить</string>
+    <string name="editor_of_habit">Редактор привычки</string>
+    <string name="name_of_habit">Название привычки</string>
+    <string name="bad_habit">Вредная</string>
+    <string name="good_habit">Хорошая</string>
+    <string name="neutral_habit">Нейтральная</string>
+    <string name="description_of_habit">Описание привычки</string>
+    <string name="periodicity_first_part">раз</string>
+    <string name="periodicity_second_part">в</string>
 </resources>

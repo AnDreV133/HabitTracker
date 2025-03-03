@@ -1,10 +1,155 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HabitEditorActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/habitEditorTextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editor_of_habit"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/habitEditorNameEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/name_of_habit"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/habitEditorTextTitle" />
+
+        <EditText
+            android:id="@+id/habitEditorDescriptionEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="top"
+            android:hint="@string/description_of_habit"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/habitEditorNameEditText" />
+
+        <Spinner
+            android:id="@+id/habitEditorPrioritySpinner"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/habitEditorDescriptionEditText" />
+
+        <TextView
+            android:id="@+id/habitEditorTextType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/type_with_double_dots"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/habitEditorPrioritySpinner" />
+
+        <RadioGroup
+            android:id="@+id/habitEditorTypeRadioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/habitEditorTextType"
+            app:layout_constraintTop_toTopOf="@+id/habitEditorTextType">
+
+            <RadioButton
+                android:id="@+id/habitEditorTypeBad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bad_habit" />
+
+            <RadioButton
+                android:id="@+id/habitEditorTypeGood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/good_habit" />
+
+            <RadioButton
+                android:id="@+id/habitEditorTypeNeutral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/neutral_habit" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/habitEditorTextPeriodicity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/periodicity_with_double_dots"
+            android:textSize="20sp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/habitEditorTypeRadioGroup" />
+
+        <EditText
+            android:id="@+id/habitEditorQuantityEditText"
+            android:layout_width="80dp"
+            android:layout_height="48dp"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:hint="@string/periodicity_first_part"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/habitEditorTextPeriodicity"
+            app:layout_constraintStart_toEndOf="@id/habitEditorTextPeriodicity"
+            app:layout_constraintTop_toTopOf="@+id/habitEditorTextPeriodicity" />
+
+        <TextView
+            android:id="@+id/habitEditorTextPeriodicityDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/habitEditorQuantityEditText"
+            app:layout_constraintStart_toEndOf="@+id/habitEditorQuantityEditText"
+            app:layout_constraintTop_toTopOf="@+id/habitEditorQuantityEditText"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/habitEditorFrequencyEditText"
+            android:layout_width="80dp"
+            android:layout_height="48dp"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:hint="@string/periodicity_second_part"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/habitEditorQuantityEditText"
+            app:layout_constraintStart_toEndOf="@+id/habitEditorTextPeriodicityDivider"
+            app:layout_constraintTop_toTopOf="@+id/habitEditorQuantityEditText" />
+
+        <Button
+            android:id="@+id/habitEditorSaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/save"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/habitEditorTextPeriodicity" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
