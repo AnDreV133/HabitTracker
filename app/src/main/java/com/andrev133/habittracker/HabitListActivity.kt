@@ -14,21 +14,23 @@ import kotlinx.coroutines.launch
 class HabitListActivity : AppCompatActivity() {
     private var _binding: ActivityHabitListBinding? = null
     private val binding get() = _binding!!
+    private var _getAllHabitsUseCase: GetAllHabitsUseCase? = null
+    private val getAllHabitsUseCase get() = _getAllHabitsUseCase!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         _binding = ActivityHabitListBinding.inflate(layoutInflater)
+        _getAllHabitsUseCase = GetAllHabitsUseCase(this)
 
         setContentView(binding.root)
 
-        val getAllHabitsUseCase = GetAllHabitsUseCase()
         binding.habitList.apply {
             layoutManager = LinearLayoutManager(this@HabitListActivity)
             adapter = HabitListAdapter()
 
             lifecycleScope.launch {
-                getAllHabitsUseCase(this@HabitListActivity).collect { habits ->
+                getAllHabitsUseCase().collect { habits ->
                     (adapter as HabitListAdapter).updateData(habits)
                 }
             }
@@ -41,12 +43,17 @@ class HabitListActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getAllHabitsUseCase.refresh()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+        _getAllHabitsUseCase = null
     }
 }
-
 
 
 val dataSet = mutableListOf<HabitModel>().apply {
