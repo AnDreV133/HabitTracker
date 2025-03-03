@@ -18,10 +18,19 @@ class HabitListAdapter(private val data: MutableList<HabitModel> = mutableListOf
         private val binding: ItemHabitCardBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(model: HabitModel) = binding.run {
+        fun bind(model: HabitModel) = binding.apply {
             itemHabitName.text = model.name
-            itemHabitPriority.text = root.resources.getString(R.string.priority_fmt, model.priority)
-            itemHabitPeriod.text = model.periodicity
+            itemHabitPriority.text = root.resources
+                .getString(
+                    R.string.priority_fmt,
+                    root.resources.getStringArray(R.array.priority_array)[model.priority]
+                )
+            itemHabitPeriod.text = root.resources
+                .getString(
+                    R.string.periodicity_fmt,
+                    model.quantity,
+                    model.periodicity
+                )
             itemHabitType.text = root.resources.getString(model.type.toResString())
             itemHabitRightPartCard.backgroundTintList = ColorStateList.valueOf(model.color)
             itemHabitDescription.text = model.description
@@ -44,17 +53,15 @@ class HabitListAdapter(private val data: MutableList<HabitModel> = mutableListOf
                         if (!model.isExpanded) itemHabitDescription.visibility = View.GONE
                     }
                 })
-
             }
 
             root.setOnLongClickListener {
                 Intent(root.context, HabitEditorActivity::class.java).apply {
                     putExtra(HabitEditorActivity.EXTRA_UUID, model.uuid?.toString())
-                }.let {
-                    intent -> root.context.startActivity(intent)
+                }.let { intent ->
+                    root.context.startActivity(intent)
+                    return@setOnLongClickListener true
                 }
-
-                true
             }
         }
     }

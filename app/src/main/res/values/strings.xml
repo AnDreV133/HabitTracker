@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">HabitTracker</string>
     <string name="app_title">Трекер привычек</string>
-    <string name="priority_fmt">#%d</string>
+    <string name="priority_fmt">#%s</string>
+    <string name="periodicity_fmt">%s/%s</string>
     <string name="description_add_new_habit">add new habit</string>
     <string name="type_with_double_dots">Тип:</string>
     <string name="periodicity_with_double_dots">Периодичность:</string>
