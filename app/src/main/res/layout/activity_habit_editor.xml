@@ -129,7 +129,7 @@
             tools:ignore="HardcodedText" />
 
         <EditText
-            android:id="@+id/habitEditorFrequencyEditText"
+            android:id="@+id/habitEditorPeriodicityEditText"
             android:layout_width="80dp"
             android:layout_height="48dp"
             android:importantForAutofill="no"

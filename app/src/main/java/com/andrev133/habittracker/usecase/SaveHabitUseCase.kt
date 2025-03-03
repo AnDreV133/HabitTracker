@@ -19,8 +19,9 @@ class SaveHabitUseCase {
     private fun HabitModel.toJson() = JsonObject().apply {
         addProperty("name", name)
         addProperty("priority", priority)
+        addProperty("quantity", quantity)
         addProperty("periodicity", periodicity)
-        addProperty("type", type)
+        addProperty("type", type.toString())
         addProperty("description", description)
         addProperty("color", color)
     }
