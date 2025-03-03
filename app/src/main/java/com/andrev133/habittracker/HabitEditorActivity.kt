@@ -44,7 +44,7 @@ class HabitEditorActivity : AppCompatActivity() {
 
         intent?.getStringExtra(EXTRA_UUID)?.let { uuid ->
             getHabitUseCase(this, UUID.fromString(uuid))?.let { model ->
-//                binding.bind(model)
+                binding.bind(model)
             }
         }
     }
@@ -67,14 +67,14 @@ class HabitEditorActivity : AppCompatActivity() {
         uuid = uuid,
     )
 
-//    private fun ActivityHabitEditorBinding.bind(model: HabitModel) = binding.run {
-//        habitEditorNameEditText.setText(model.name)
-//        habitEditorDescriptionEditText.setText(model.description)
-//        habitEditorPrioritySpinner.setSelection()
-//        habitEditorTypeRadioGroup.check()
-//        habitEditorQuantityEditText.setText()
-//        habitEditorPeriodicityEditText.setText()
-//    }
+    private fun ActivityHabitEditorBinding.bind(model: HabitModel) {
+        habitEditorNameEditText.setText(model.name)
+        habitEditorDescriptionEditText.setText(model.description)
+        habitEditorPrioritySpinner.setSelection(model.priority)
+        habitEditorTypeRadioGroup.check(model.type.toResRadioBtn())
+        habitEditorQuantityEditText.setText(model.quantity)
+        habitEditorPeriodicityEditText.setText(model.periodicity)
+    }
 
     companion object ExtraConst {
         const val EXTRA_UUID = "EXTRA_HABIT_UUID"

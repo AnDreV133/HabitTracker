@@ -3,6 +3,7 @@ package com.andrev133.habittracker
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
@@ -47,7 +48,13 @@ class HabitListAdapter(private val data: MutableList<HabitModel> = mutableListOf
             }
 
             root.setOnLongClickListener {
-                TODO("navigate to edit habit")
+                Intent(root.context, HabitEditorActivity::class.java).apply {
+                    putExtra(HabitEditorActivity.EXTRA_UUID, model.uuid?.toString())
+                }.let {
+                    intent -> root.context.startActivity(intent)
+                }
+
+                true
             }
         }
     }
