@@ -14,4 +14,10 @@
     <string name="description_of_habit">Описание привычки</string>
     <string name="periodicity_first_part">раз</string>
     <string name="periodicity_second_part">в</string>
+    <string-array name="priority_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>

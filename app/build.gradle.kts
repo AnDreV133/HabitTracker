@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    //noinspection UseTomlInstead
+    implementation("com.google.code.gson:gson:2.12.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
