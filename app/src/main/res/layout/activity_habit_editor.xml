@@ -140,16 +140,53 @@
             app:layout_constraintStart_toEndOf="@+id/habitEditorTextPeriodicityDivider"
             app:layout_constraintTop_toTopOf="@+id/habitEditorQuantityEditText" />
 
+        <EditText
+            android:id="@+id/habitEditorColorRgbEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:hint="@string/color_in_rgb"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/habitEditorQuantityEditText" />
+
+        <EditText
+            android:id="@+id/habitEditorColorHsvEditText"
+            android:layout_width="104dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:hint="@string/color_in_hsv"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/habitEditorColorRgbEditText"
+            app:layout_constraintStart_toEndOf="@id/habitEditorColorRgbEditText"
+            app:layout_constraintTop_toTopOf="@+id/habitEditorColorRgbEditText" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/shape_rounded_card_stroked"
+            android:backgroundTint="@color/white"
+            android:backgroundTintMode="multiply"
+            app:layout_constraintBottom_toBottomOf="@+id/habitEditorColorHsvEditText"
+            app:layout_constraintStart_toEndOf="@+id/habitEditorColorHsvEditText"
+            app:layout_constraintTop_toTopOf="@+id/habitEditorColorHsvEditText" />
+
         <Button
             android:id="@+id/habitEditorSaveButton"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:layout_marginTop="40dp"
             android:text="@string/save"
             android:textSize="16sp"
+            android:layout_marginTop="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/habitEditorTextPeriodicity" />
+            app:layout_constraintTop_toBottomOf="@+id/habitEditorColorRgbEditText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
