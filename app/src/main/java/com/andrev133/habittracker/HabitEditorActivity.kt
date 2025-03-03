@@ -1,14 +1,8 @@
 package com.andrev133.habittracker
 
 import android.os.Bundle
-import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.RadioButton
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.andrev133.habittracker.databinding.ActivityHabitEditorBinding
 import com.andrev133.habittracker.usecase.GetHabitUseCase
 import com.andrev133.habittracker.usecase.SaveHabitUseCase

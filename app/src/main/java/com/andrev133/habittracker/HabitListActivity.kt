@@ -1,14 +1,12 @@
 package com.andrev133.habittracker
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andrev133.habittracker.databinding.ActivityHabitListBinding
 import com.andrev133.habittracker.usecase.GetAllHabitsUseCase
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class HabitListActivity : AppCompatActivity() {
