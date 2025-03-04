@@ -35,6 +35,7 @@ class HabitListAdapter(private val data: MutableList<HabitModel> = mutableListOf
             itemHabitRightPartCard.backgroundTintList = ColorStateList.valueOf(model.color)
             itemHabitDescription.text = model.description
             itemHabitDescription.visibility = if (model.isExpanded) View.VISIBLE else View.GONE
+            itemHabitRightPartCard.backgroundTintList = ColorStateList.valueOf(model.color)
 
             root.setOnClickListener {
                 model.isExpanded = !model.isExpanded
