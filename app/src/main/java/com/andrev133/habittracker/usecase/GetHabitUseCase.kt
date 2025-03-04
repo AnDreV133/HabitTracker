@@ -14,7 +14,7 @@ class GetHabitUseCase {
             ?.let { jsonStr -> JsonParser.parseString(jsonStr).getAsJsonObject() }
             ?.toModel(uuid)
 
-    private fun JsonObject.toModel(uuid: UUID? = null) = HabitModel(
+    private fun JsonObject.toModel(uuid: UUID) = HabitModel(
         name = get("name").asString,
         priority = get("priority").asInt,
         quantity = get("quantity").asString,

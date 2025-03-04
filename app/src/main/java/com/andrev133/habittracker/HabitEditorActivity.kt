@@ -20,6 +20,8 @@ class HabitEditorActivity : AppCompatActivity() {
     private var _getHabitUseCase: GetHabitUseCase? = null
     private val getHabitUseCase get() = _getHabitUseCase!!
 
+    private var currentUuid: UUID? = null
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,7 @@ class HabitEditorActivity : AppCompatActivity() {
         binding.habitEditorTypeRadioGroup.check(R.id.habitEditorTypeNeutral)
 
         binding.habitEditorSaveButton.setOnClickListener {
-            saveHabitUseCase(this, binding.toModel())
+            saveHabitUseCase(this, binding.toModel(currentUuid))
             finish()
         }
 
@@ -82,6 +84,7 @@ class HabitEditorActivity : AppCompatActivity() {
         intent?.getStringExtra(EXTRA_UUID)?.let { uuid ->
             getHabitUseCase(this, UUID.fromString(uuid))?.let { model ->
                 binding.bind(model)
+                currentUuid = model.uuid
             }
         }
     }
@@ -91,9 +94,10 @@ class HabitEditorActivity : AppCompatActivity() {
         _binding = null
         _saveHabitUseCase = null
         _getHabitUseCase = null
+        currentUuid = null
     }
 
-    private fun ActivityHabitEditorBinding.toModel(uuid: UUID? = null) = HabitModel(
+    private fun ActivityHabitEditorBinding.toModel(uuid: UUID?) = HabitModel(
         name = habitEditorNameEditText.text.toString(),
         priority = habitEditorPrioritySpinner.selectedItemPosition,
         quantity = habitEditorQuantityEditText.text.toString(),
