@@ -169,9 +169,9 @@
             android:id="@+id/habitEditorColorPicker"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/shape_rounded_card_stroked"
-            android:backgroundTint="@color/white"
-            android:backgroundTintMode="multiply"
+            android:foreground="@drawable/shape_rounded_card_stroked"
+            android:backgroundTint="#ff0000"
+            android:background="@drawable/shape_rounded_card"
             app:layout_constraintBottom_toBottomOf="@+id/habitEditorColorHsvEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/habitEditorColorHsvEditText" />
