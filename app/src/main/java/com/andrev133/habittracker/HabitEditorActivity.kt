@@ -45,13 +45,12 @@ class HabitEditorActivity : AppCompatActivity() {
         binding.habitEditorTypeRadioGroup.check(R.id.habitEditorTypeNeutral)
 
         binding.habitEditorSaveButton.setOnClickListener {
-            saveHabitUseCase(this, binding.toModel(currentUuid))
-            finish()
+            saveHabitUseCase(this, binding.toModel(currentUuid)) { finish() }
         }
 
         var isRgbTextProgrammaticChange = false
         var isHsvTextProgrammaticChange = false
-        binding.habitEditorColorRgbEditText.addTextChangedListener { text->
+        binding.habitEditorColorRgbEditText.addTextChangedListener { text ->
             if (isRgbTextProgrammaticChange) return@addTextChangedListener
             try {
                 Color.parseColor(text.toString())

@@ -77,12 +77,18 @@ class HabitListAdapter(private val data: MutableList<HabitModel> = mutableListOf
         holder.bind(data[position])
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = data.size // fixme: maybe size not update
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateData(newData: List<HabitModel>) {
+        val oldSize = data.size
+        val newSize = newData.size
+
         data.clear()
         data.addAll(newData)
-        notifyDataSetChanged()
+
+        if (oldSize + 1 == newSize) notifyItemInserted(oldSize)
+        else if (oldSize - 1 == newSize) notifyItemRemoved(oldSize - 1)
+        else if (oldSize == newSize) notifyDataSetChanged()
     }
 }

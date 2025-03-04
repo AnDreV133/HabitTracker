@@ -44,6 +44,7 @@ class HabitListActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         getAllHabitsUseCase.refresh()
+        println("onResume")
     }
 
     override fun onDestroy() {
