@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="card_corner_radius">15dp</dimen>
+    <dimen name="color_square_size">40dp</dimen>
+    <dimen name="color_squares_divider">12dp</dimen>
 </resources>

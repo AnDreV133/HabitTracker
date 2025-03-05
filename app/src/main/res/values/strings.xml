@@ -17,6 +17,7 @@
     <string name="periodicity_second_part">в</string>
     <string name="color_in_hsv">Цвет в HSV</string>
     <string name="color_in_rgb">Цвет в RGB</string>
+    <string name="change_color_description">выбор цвета</string>
     <string-array name="priority_array">
         <item>1</item>
         <item>2</item>

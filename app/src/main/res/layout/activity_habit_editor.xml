@@ -167,11 +167,10 @@
 
         <View
             android:id="@+id/habitEditorColorPicker"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/color_square_size"
+            android:layout_height="@dimen/color_square_size"
             android:foreground="@drawable/shape_rounded_card_stroked"
-            android:backgroundTint="#ff0000"
-            android:background="@drawable/shape_rounded_card"
+            android:background="@drawable/shape_rounded_color_picker_element"
             app:layout_constraintBottom_toBottomOf="@+id/habitEditorColorHsvEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/habitEditorColorHsvEditText" />

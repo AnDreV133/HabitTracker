@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:contentDescription="@string/change_color_description">
+
+    <GridLayout
+        android:id="@+id/colorGrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rounded_color_picker_element"
+        android:columnCount="16"
+        android:rowCount="1" />
+</HorizontalScrollView>

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
@@ -12,7 +13,7 @@ import com.andrev133.habittracker.usecase.GetHabitUseCase
 import com.andrev133.habittracker.usecase.SaveHabitUseCase
 import java.util.UUID
 
-class HabitEditorActivity : AppCompatActivity() {
+class HabitEditorActivity : AppCompatActivity(), ColorPickerPopup.OnColorSelectedListener {
     private var _binding: ActivityHabitEditorBinding? = null
     private val binding get() = _binding!!
     private var _saveHabitUseCase: SaveHabitUseCase? = null
@@ -80,6 +81,21 @@ class HabitEditorActivity : AppCompatActivity() {
             }
         }
 
+        binding.habitEditorColorPicker.setOnClickListener {
+            val (colorPickerGlobalX, colorPickerGlobalY) = IntArray(2).also { arr ->
+                binding.habitEditorColorPicker.getLocationOnScreen(arr)
+            }
+            ColorPickerPopup(binding).apply {
+                setOnColorSelectedListener(this@HabitEditorActivity)
+                showAtLocation(
+                    binding.habitEditorColorPicker,
+                    Gravity.TOP or Gravity.START,
+                    colorPickerGlobalX,
+                    colorPickerGlobalY
+                )
+            }
+        }
+
         intent?.getStringExtra(EXTRA_UUID)?.let { uuid ->
             getHabitUseCase(this, UUID.fromString(uuid))?.let { model ->
                 binding.bind(model)
@@ -114,9 +130,13 @@ class HabitEditorActivity : AppCompatActivity() {
         habitEditorTypeRadioGroup.check(model.type.toResRadioBtn())
         habitEditorQuantityEditText.setText(model.quantity)
         habitEditorPeriodicityEditText.setText(model.periodicity)
-        habitEditorColorPicker.backgroundTintList = ColorStateList.valueOf(model.color)
-        habitEditorColorRgbEditText.setText(model.color.toRgbFmt())
-        habitEditorColorHsvEditText.setText(model.color.toHsvFmt())
+        setColor(model.color)
+    }
+
+    private fun ActivityHabitEditorBinding.setColor(color: Int) {
+        habitEditorColorPicker.backgroundTintList = ColorStateList.valueOf(color)
+        habitEditorColorRgbEditText.setText(color.toRgbFmt())
+        habitEditorColorHsvEditText.setText(color.toHsvFmt())
     }
 
     private fun Int.toRgbFmt() = "#%08x".format(this)
@@ -127,5 +147,9 @@ class HabitEditorActivity : AppCompatActivity() {
 
     companion object ExtraConst {
         const val EXTRA_UUID = "EXTRA_HABIT_UUID"
+    }
+
+    override fun onColorSelected(color: Int) {
+        binding.setColor(color)
     }
 }
