@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_item_good"
+        android:icon="@drawable/baseline_sentiment_satisfied_alt_48"
+        android:title="@string/menu_item_good_title" />
+    <item
+        android:id="@+id/menu_item_bad"
+        android:icon="@drawable/baseline_sentiment_very_dissatisfied_48"
+        android:title="@string/menu_item_bad_title" />
+</menu>
