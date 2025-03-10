@@ -9,9 +9,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.UUID
 
-class SaveHabitUseCase {
+class SaveHabitUseCase(private val context: Context) {
     @SuppressLint("ApplySharedPref")
-    operator fun invoke(context: Context, model: HabitModel, onEndSave: () -> Unit) {
+    operator fun invoke(model: HabitModel, onEndSave: () -> Unit) {
         val json = model.toJson().toString()
         val uuid = model.uuid ?: UUID.randomUUID()
 

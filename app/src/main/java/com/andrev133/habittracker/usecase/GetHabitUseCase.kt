@@ -7,8 +7,8 @@ import com.google.gson.JsonObject
 import com.google.gson.JsonParser
 import java.util.UUID
 
-class GetHabitUseCase {
-    operator fun invoke(context: Context, uuid: UUID) =
+class GetHabitUseCase(private val context: Context) {
+    operator fun invoke(uuid: UUID) =
         context.getSharedPreferences("habit_${uuid}", Context.MODE_PRIVATE)
             .getString("JSON", null)
             ?.let { jsonStr -> JsonParser.parseString(jsonStr).getAsJsonObject() }

@@ -14,7 +14,7 @@ import java.io.File
 import java.util.UUID
 
 class GetAllHabitsUseCase(private val context: Context): GetAllHabits {
-    private val getHabitUseCase = GetHabitUseCase()
+    private val getHabitUseCase = GetHabitUseCase(context)
     private val flow = MutableSharedFlow<List<HabitModel>>(replay = 1)
 
     override operator fun invoke(): Flow<List<HabitModel>> {
@@ -43,7 +43,7 @@ class GetAllHabitsUseCase(private val context: Context): GetAllHabits {
 
             val deferredResult = withContext(Dispatchers.IO) {
                 uuids.map { uuid ->
-                    async { getHabitUseCase(context, UUID.fromString(uuid)).also { println(it) } }
+                    async { getHabitUseCase(UUID.fromString(uuid)).also { println(it) } }
                 }
             }
 
