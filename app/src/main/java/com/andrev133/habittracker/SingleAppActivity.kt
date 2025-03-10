@@ -40,10 +40,13 @@ class SingleAppActivity : AppCompatActivity(), OpenHabitEditorFragmentByUuid {
 
     override fun openHabitEditorFragmentByUuid(uuid: UUID?) {
         supportFragmentManager.beginTransaction()
-//            .add(
-//                HabitEditorFragment.newInstanceByUuid(uuid), "habitEditorFragment"
-//            )
+            .replace(
+                R.id.fragmentContainer,
+                HabitEditorFragment.newInstance(this, uuid), "habitEditorFragment"
+            )
+            .addToBackStack("habitEditorFragment")
             .commit()
-        TODO("do transaction")
     }
+
+
 }

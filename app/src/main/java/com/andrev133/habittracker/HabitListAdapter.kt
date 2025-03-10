@@ -10,15 +10,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.andrev133.habittracker.databinding.ItemHabitCardBinding
+import java.util.UUID
 
-class HabitListAdapter(private val data: MutableList<HabitModel> = mutableListOf()) :
+class HabitListAdapter(
+    private val onDetail: (uuid: UUID) -> Unit,
+    private val data: MutableList<HabitModel> = mutableListOf()
+) :
     RecyclerView.Adapter<HabitListAdapter.HabitViewHolder>() {
 
-    inner class HabitViewHolder(
+    class HabitViewHolder(
         private val binding: ItemHabitCardBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(model: HabitModel) = binding.apply {
+        fun bind(model: HabitModel, onDetail: (uuid: UUID) -> Unit) = binding.apply {
             itemHabitName.text = model.name
             itemHabitPriority.text = root.resources
                 .getString(
@@ -57,12 +61,8 @@ class HabitListAdapter(private val data: MutableList<HabitModel> = mutableListOf
             }
 
             root.setOnLongClickListener {
-                Intent(root.context, HabitEditorActivity::class.java).apply {
-                    putExtra(HabitEditorActivity.EXTRA_UUID, model.uuid?.toString())
-                }.let { intent ->
-                    root.context.startActivity(intent)
-                    return@setOnLongClickListener true
-                }
+                model.uuid?.let { uuid -> onDetail(uuid) }
+                true
             }
         }
     }
@@ -74,7 +74,7 @@ class HabitListAdapter(private val data: MutableList<HabitModel> = mutableListOf
     )
 
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position], onDetail)
     }
 
     override fun getItemCount() = data.size // fixme: maybe size not update

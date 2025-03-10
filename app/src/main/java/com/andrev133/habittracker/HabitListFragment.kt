@@ -32,7 +32,12 @@ class HabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragmen
 
         binding.habitList.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = HabitListAdapter()
+            adapter = HabitListAdapter(
+                { uuid ->
+                    (activity as OpenHabitEditorFragmentByUuid)
+                        .openHabitEditorFragmentByUuid(uuid)
+                }
+            )
             initFlow(adapter as HabitListAdapter)
         }
 
@@ -43,7 +48,7 @@ class HabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragmen
 
     override fun onResume() {
         super.onResume()
-        getAllHabitsUseCase.refresh()
+        getAllHabitsUseCase.refresh() // fixme not refresh, cause method not call
     }
 
     override fun onDestroyView() {

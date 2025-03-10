@@ -3,7 +3,9 @@
     <style name="Base.Theme.HabitTracker" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="isLightTheme">true</item>
     </style>
 
     <style name="Theme.HabitTracker" parent="Base.Theme.HabitTracker" />
+
 </resources>
