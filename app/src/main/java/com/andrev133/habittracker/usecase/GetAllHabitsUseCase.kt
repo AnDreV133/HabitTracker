@@ -13,16 +13,16 @@ import kotlinx.coroutines.withContext
 import java.io.File
 import java.util.UUID
 
-class GetAllHabitsUseCase(private val context: Context) {
+class GetAllHabitsUseCase(private val context: Context): GetAllHabits {
     private val getHabitUseCase = GetHabitUseCase()
     private val flow = MutableSharedFlow<List<HabitModel>>(replay = 1)
 
-    operator fun invoke(): Flow<List<HabitModel>> {
+    override operator fun invoke(): Flow<List<HabitModel>> {
         refresh()
         return flow
     }
 
-    fun refresh() {
+    override fun refresh() {
         CoroutineScope(Dispatchers.IO).launch {
             flow.emit(loadHabits())
         }
