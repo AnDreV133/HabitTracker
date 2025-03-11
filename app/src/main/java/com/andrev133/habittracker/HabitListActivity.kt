@@ -25,7 +25,7 @@ class HabitListActivity : AppCompatActivity() {
 
         binding.habitList.apply {
             layoutManager = LinearLayoutManager(this@HabitListActivity)
-            adapter = HabitListAdapter()
+            adapter = HabitListAdapter({})
 
             lifecycleScope.launch {
                 getAllHabitsUseCase().collect { habits ->

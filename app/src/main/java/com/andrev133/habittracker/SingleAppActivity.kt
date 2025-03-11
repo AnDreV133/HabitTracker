@@ -1,11 +1,12 @@
 package com.andrev133.habittracker;
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.andrev133.habittracker.databinding.ActivitySingleAppBinding
 import java.util.UUID
 
-class SingleAppActivity : AppCompatActivity(), OpenHabitEditorFragmentByUuid {
+class SingleAppActivity : AppCompatActivity(), OpenHabitEditorFragmentByUuid, ShowMenu, HideMenu {
     private var _binding: ActivitySingleAppBinding? = null
     private val binding get() = _binding!!
 
@@ -14,23 +15,32 @@ class SingleAppActivity : AppCompatActivity(), OpenHabitEditorFragmentByUuid {
         _binding = ActivitySingleAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
+        binding.bottomNavigation.apply {
+            setOnItemSelectedListener { item ->
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(
+                        R.id.fragmentContainerWithBottomNavigation,
+                        when (item.itemId) {
+                            R.id.menuItemGood -> HabitListFragment.newInstanceTypeGood(this@SingleAppActivity)
+                            R.id.menuItemBad -> HabitListFragment.newInstanceTypeBad(this@SingleAppActivity)
+                            else -> throw IllegalArgumentException("Unknown menu item id")
+                        },
+                        "fragmentWithBottomNavigation"
+                    )
+                    .commit()
+                true
+            }
+            selectedItemId = R.id.menuItemGood
             supportFragmentManager
                 .beginTransaction()
-                .replace(
+                .add(
                     R.id.fragmentContainerWithBottomNavigation,
-                    when (item.itemId) {
-                        R.id.menuItemGood -> HabitListFragment.newInstanceTypeGood(this)
-                        R.id.menuItemBad -> HabitListFragment.newInstanceTypeBad(this)
-                        else -> throw IllegalArgumentException("Unknown menu item id")
-                    },
+                    HabitListFragment.newInstanceTypeGood(this@SingleAppActivity),
                     "fragmentWithBottomNavigation"
                 )
                 .commit()
-            true
         }
-
-        binding.bottomNavigation.selectedItemId = R.id.menuItemGood
     }
 
     override fun onDestroy() {
@@ -41,12 +51,19 @@ class SingleAppActivity : AppCompatActivity(), OpenHabitEditorFragmentByUuid {
     override fun openHabitEditorFragmentByUuid(uuid: UUID?) {
         supportFragmentManager.beginTransaction()
             .replace(
-                R.id.fragmentContainer,
-                HabitEditorFragment.newInstance(this, uuid), "habitEditorFragment"
+                R.id.fragmentContainerWithBottomNavigation,
+                HabitEditorFragment.newInstance(this, uuid),
+                "habitEditorFragment"
             )
             .addToBackStack("habitEditorFragment")
             .commit()
     }
 
+    override fun showMenu() {
+        binding.bottomNavigation.visibility = View.VISIBLE
+    }
 
+    override fun hideMenu() {
+        binding.bottomNavigation.visibility = View.GONE
+    }
 }

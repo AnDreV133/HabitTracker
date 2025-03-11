@@ -27,8 +27,8 @@ class HabitEditorActivity : AppCompatActivity(), ColorPickerPopup.OnColorSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityHabitEditorBinding.inflate(layoutInflater)
-        _saveHabitUseCase = SaveHabitUseCase()
-        _getHabitUseCase = GetHabitUseCase()
+        _saveHabitUseCase = SaveHabitUseCase(this)
+        _getHabitUseCase = GetHabitUseCase(this)
 
         setContentView(binding.root)
 
@@ -46,7 +46,7 @@ class HabitEditorActivity : AppCompatActivity(), ColorPickerPopup.OnColorSelecte
         binding.habitEditorTypeRadioGroup.check(R.id.habitEditorTypeNeutral)
 
         binding.habitEditorSaveButton.setOnClickListener {
-            saveHabitUseCase(this, binding.toModel(currentUuid)) { finish() }
+            saveHabitUseCase(binding.toModel(currentUuid)) { finish() }
         }
 
         var isRgbTextProgrammaticChange = false
@@ -97,7 +97,7 @@ class HabitEditorActivity : AppCompatActivity(), ColorPickerPopup.OnColorSelecte
         }
 
         intent?.getStringExtra(EXTRA_UUID)?.let { uuid ->
-            getHabitUseCase(this, UUID.fromString(uuid))?.let { model ->
+            getHabitUseCase(UUID.fromString(uuid))?.let { model ->
                 binding.bind(model)
                 currentUuid = model.uuid
             }

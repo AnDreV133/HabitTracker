@@ -24,6 +24,7 @@ class HabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragmen
     ): View {
         _binding = ActivityHabitListBinding
             .inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -46,9 +47,16 @@ class HabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragmen
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        println("onPause")
+    }
+
     override fun onResume() {
         super.onResume()
-        getAllHabitsUseCase.refresh() // fixme not refresh, cause method not call
+        (activity as ShowMenu).showMenu()
+        getAllHabitsUseCase.refresh()
+        println("onResume")
     }
 
     override fun onDestroyView() {

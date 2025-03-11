@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.view.ContextMenu
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -54,12 +55,13 @@ class HabitEditorFragment(
         binding.habitEditorTypeRadioGroup.check(R.id.habitEditorTypeNeutral)
 
         binding.habitEditorSaveButton.setOnClickListener {
-            saveHabitUseCase(binding.toModel(uuid)) {
-                activity?.supportFragmentManager
-                    ?.beginTransaction()
-                    ?.remove(this@HabitEditorFragment)
-                    ?.commit()
-            }
+            saveHabitUseCase(
+                model = binding.toModel(uuid),
+                onEndSave = {
+                    activity?.supportFragmentManager
+                        ?.popBackStack()
+                }
+            )
         }
 
         var isRgbTextProgrammaticChange = false
@@ -112,6 +114,11 @@ class HabitEditorFragment(
         uuid?.let { uuid ->
             getHabitUseCase(uuid)?.let { model -> binding.bind(model) }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as HideMenu).hideMenu()
     }
 
     override fun onDestroy() {
