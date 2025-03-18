@@ -13,7 +13,7 @@ import com.andrev133.habittracker.usecase.GetAllHabits
 import com.andrev133.habittracker.usecase.GetAllHabitsByTypeUseCase
 import kotlinx.coroutines.launch
 
-class HabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragment() {
+class HabitListFragment : Fragment() {
     private var _binding: ActivityHabitListBinding? = null
     private val binding get() = _binding!!
 
@@ -31,15 +31,16 @@ class HabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.habitList.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = HabitListAdapter(
-                { uuid ->
-                    (activity as OpenHabitEditorFragmentByUuid)
-                        .openHabitEditorFragmentByUuid(uuid)
-                }
-            )
-            initFlow(adapter as HabitListAdapter)
+        binding.habitListContainer.adapter = HabitListFragmentAdapter(requireActivity())
+
+        binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
+            binding.habitListContainer.currentItem = when (menuItem.itemId) {
+                R.id.menuItemGood -> 0
+                R.id.menuItemBad -> 1
+                else -> throw RuntimeException("Unknown menu item")
+            }
+
+            true
         }
 
         binding.habitListFab.setOnClickListener {
@@ -47,34 +48,13 @@ class HabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragmen
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        println("onPause")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as ShowMenu).showMenu()
-        getAllHabitsUseCase.refresh()
-        println("onResume")
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
-    private fun initFlow(adapter: HabitListAdapter) = lifecycleScope.launch {
-        getAllHabitsUseCase().collect { habits ->
-            adapter.updateData(habits)
-        }
-    }
-
     companion object {
-        fun newInstanceTypeGood(context: Context) =
-            HabitListFragment(GetAllHabitsByTypeUseCase(context, TypeEnum.GOOD))
-
-        fun newInstanceTypeBad(context: Context) =
-            HabitListFragment(GetAllHabitsByTypeUseCase(context, TypeEnum.BAD))
+        fun newInstance() = HabitListFragment()
     }
+
 }
