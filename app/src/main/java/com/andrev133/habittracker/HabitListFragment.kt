@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.andrev133.habittracker.databinding.ActivityHabitListBinding
 
 class HabitListFragment : Fragment() {
@@ -25,8 +26,14 @@ class HabitListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.habitListContainer.adapter = HabitListFragmentAdapter(requireActivity())
-
+        binding.habitListContainer.apply {
+            adapter = HabitListFragmentAdapter(requireActivity())
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    binding.bottomNavigation.menu.getItem(position).isChecked = true
+                }
+            })
+        }
         binding.bottomNavigation.setOnItemSelectedListener { menuItem ->
             binding.habitListContainer.currentItem = when (menuItem.itemId) {
                 R.id.menuItemGood -> 0
