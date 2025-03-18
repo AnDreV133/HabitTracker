@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.andrev133.habittracker.databinding.ActivityHabitListBinding
 import com.andrev133.habittracker.databinding.FragmentSubHabitListBinding
 import com.andrev133.habittracker.usecase.GetAllHabits
 import com.andrev133.habittracker.usecase.GetAllHabitsByTypeUseCase

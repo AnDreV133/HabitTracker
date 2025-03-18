@@ -116,11 +116,6 @@ class HabitEditorFragment(
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as? HideMenu)?.hideMenu()
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

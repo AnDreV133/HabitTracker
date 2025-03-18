@@ -1,4 +1,4 @@
-package com.andrev133.habittracker;
+package com.andrev133.habittracker
 
 import android.os.Bundle
 import android.view.View
@@ -15,23 +15,6 @@ class SingleAppActivity : AppCompatActivity(), OpenHabitEditorFragmentByUuid {
         _binding = ActivitySingleAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        binding.bottomNavigation.apply {
-//            setOnItemSelectedListener { item ->
-//                supportFragmentManager
-//                    .beginTransaction()
-//                    .replace(
-//                        R.id.fragmentContainerWithBottomNavigation,
-//                        when (item.itemId) {
-//                            R.id.menuItemGood -> HabitListFragment.newInstanceTypeGood(this@SingleAppActivity)
-//                            R.id.menuItemBad -> HabitListFragment.newInstanceTypeBad(this@SingleAppActivity)
-//                            else -> throw IllegalArgumentException("Unknown menu item id")
-//                        },
-//                        "fragmentWithBottomNavigation"
-//                    )
-//                    .commit()
-//                true
-//            }
-//            selectedItemId = R.id.menuItemGood
         supportFragmentManager
             .beginTransaction()
             .add(
@@ -40,7 +23,6 @@ class SingleAppActivity : AppCompatActivity(), OpenHabitEditorFragmentByUuid {
                 "fragmentWithBottomNavigation"
             )
             .commit()
-//        }
     }
 
     override fun onDestroy() {
@@ -58,12 +40,4 @@ class SingleAppActivity : AppCompatActivity(), OpenHabitEditorFragmentByUuid {
             .addToBackStack("habitEditorFragment")
             .commit()
     }
-
-//    override fun showMenu() {
-//        binding.bottomNavigation.visibility = View.VISIBLE
-//    }
-//
-//    override fun hideMenu() {
-//        binding.bottomNavigation.visibility = View.GONE
-//    }
 }
