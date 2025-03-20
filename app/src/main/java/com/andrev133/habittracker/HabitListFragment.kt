@@ -49,6 +49,11 @@ class HabitListFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        // todo: method for update data into fragment
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

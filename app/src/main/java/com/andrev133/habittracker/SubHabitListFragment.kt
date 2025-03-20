@@ -13,7 +13,7 @@ import com.andrev133.habittracker.usecase.GetAllHabits
 import com.andrev133.habittracker.usecase.GetAllHabitsByTypeUseCase
 import kotlinx.coroutines.launch
 
-class SubHabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragment() {
+class SubHabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Fragment(), Updatable {
     private var _binding: FragmentSubHabitListBinding? = null
     private val binding get() = _binding!!
 
@@ -43,6 +43,11 @@ class SubHabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Frag
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        update()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -52,6 +57,10 @@ class SubHabitListFragment(private val getAllHabitsUseCase: GetAllHabits) : Frag
         getAllHabitsUseCase().collect { habits ->
             adapter.updateData(habits)
         }
+    }
+
+    override fun update() {
+        getAllHabitsUseCase.refresh()
     }
 
     companion object {
